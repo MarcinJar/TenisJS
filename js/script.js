@@ -23,8 +23,8 @@ let aiY = 200;
 const lineWidth = 6;
 const lineHeight = 16;
 
-let ballSpeedX = 1;
-let ballSpeedY = 1;
+let ballSpeedX = 3;
+let ballSpeedY = 3;
 
 function player() {
     ctx.fillStyle = '#7FFF00';
@@ -42,6 +42,30 @@ function ball() {
     
     ballX += ballSpeedX;
     ballY += ballSpeedY;
+    
+    if (ballY <= 0 || ballY + ballSize >= ch) {
+        if (ballSpeedY < 0) {
+            ballSpeedY = ballSpeedY - 0.1;
+        }
+        else {
+            ballSpeedY = ballSpeedY  + 0.1;
+        }
+        
+        ballSpeedY = -ballSpeedY;
+        
+        console.log(ballSpeedY);
+    }
+    
+    if (ballX <= 0 || ballX + ballSize >= cw) {
+        if (ballSpeedY < 0) {
+            ballSpeedX = ballSpeedX - 0.1;
+        }
+        else {
+            ballSpeedX = ballSpeedX + 0.1;
+        }
+        
+        ballSpeedX = -ballSpeedX;
+    }
 }
 
 function table() {
