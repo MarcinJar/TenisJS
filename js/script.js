@@ -44,25 +44,25 @@ function ball() {
     ballY += ballSpeedY;
     
     if (ballY <= 0 || ballY + ballSize >= ch) {
-        if (ballSpeedY < 0) {
+        /*if (ballSpeedY < 0) {
             ballSpeedY = ballSpeedY - 0.1;
         }
         else {
             ballSpeedY = ballSpeedY  + 0.1;
-        }
+        }*/
         
         ballSpeedY = -ballSpeedY;
         
-        console.log(ballSpeedY);
+        //console.log(ballSpeedY);
     }
     
     if (ballX <= 0 || ballX + ballSize >= cw) {
-        if (ballSpeedY < 0) {
+       /* if (ballSpeedY < 0) {
             ballSpeedX = ballSpeedX - 0.1;
         }
         else {
             ballSpeedX = ballSpeedX + 0.1;
-        }
+        }*/
         
         ballSpeedX = -ballSpeedX;
     }
@@ -77,6 +77,25 @@ function table() {
         ctx.fillRect(cw / 2 - lineWidth / 2, linePositio, lineWidth, lineHeight);
     }
 }
+
+let topCanvas = canvas.offsetTop;
+console.log(topCanvas);
+
+function playerPosition(e) {
+    //console.log("Pozycja myszy to " + (e.clientY - topCanvas));
+    playerY = e.clientY - topCanvas - paddelHeight / 2;
+    aiY = e.clientY - topCanvas  - paddelHeight / 2;
+    
+    if (playerY > ch - paddelHeight) {
+        playerY = ch - paddelHeight;
+    }
+    
+    if ( playerY <= 0) {
+        playerY = 0;
+    }
+}
+
+canvas.addEventListener("mousemove", playerPosition)
 
 function game() {
     table()
